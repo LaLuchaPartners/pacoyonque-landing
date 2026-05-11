@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-gold: 197 160 89;
+    --color-dark: 10 10 10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#EDE6D0] text-premium-dark font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply relative w-full h-screen overflow-hidden flex items-center justify-center;
+  }
+
+  .background-image {
+    @apply absolute inset-0 w-full h-full object-cover z-0;
+  }
+
+  .overlay {
+    @apply absolute inset-0 bg-black/40 z-10;
+  }
+
+  .content-wrapper {
+    @apply relative z-20 container mx-auto px-4 text-center;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-10 transition-all duration-1000 ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+}

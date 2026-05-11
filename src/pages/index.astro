@@ -1,11 +1,20 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import PergaminoSection from '../contexts/Pergamino/PergaminoSection.astro';
+import RestaurantSection from '../contexts/Restaurant/RestaurantSection.astro';
+import MuseoSection from '../contexts/Museo/MuseoSection.astro';
+import CocinaSection from '../contexts/Cocina/CocinaSection.astro';
+import CartaSection from '../contexts/Carta/CartaSection.astro';
+import MaderaSection from '../contexts/Madera/MaderaSection.astro';
+import ExperienciaSection from '../contexts/Experiencia/ExperienciaSection.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Paco Yonque | Experiencia Gastronómica Premium">
+  <PergaminoSection />
+  <RestaurantSection />
+  <MuseoSection />
+  <CocinaSection />
+  <CartaSection />
+  <MaderaSection />
+  <ExperienciaSection />
 </Layout>

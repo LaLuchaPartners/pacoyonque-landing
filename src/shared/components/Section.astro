@@ -1,0 +1,21 @@
+---
+interface Props {
+  id: string;
+  backgroundImage: string;
+  className?: string;
+  marginTop?: string;
+  zIndex?: number;
+}
+
+const { id, backgroundImage, className = "", marginTop = "0px", zIndex = 10 } = Astro.props;
+---
+
+<section id={id} class={`relative w-full flex flex-col ${className}`} style={`margin-top: ${marginTop}; z-index: ${zIndex};`}>
+  <img 
+    src={backgroundImage} 
+    alt={`Fondo ${id}`} 
+    class="w-full h-auto block"
+    loading="lazy"
+    decoding="async"
+  />
+</section>
