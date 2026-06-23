@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import carta1 from '../assets/carta/carta1.webp';
+import cartaBebidas from '../assets/carta/cartabebidas.webp';
+---
+
+<Layout title="Carta | Paco Yonque">
+  <div class="cartas">
+
+    <a href="/" class="cartas__back" id="btnBack">&#8249;</a>
+
+    <div class="cartas__item">
+      <h2 class="cartas__title">Carta Paco Yonque</h2>
+      <Image src={carta1} alt="Carta Paco Yonque" class="cartas__img" />
+    </div>
+
+    <div class="cartas__item">
+      <h2 class="cartas__title">Carta Bebidas</h2>
+      <Image src={cartaBebidas} alt="Carta Bebidas" class="cartas__img" />
+    </div>
+
+  </div>
+<script>
+  document.getElementById('btnBack')!.addEventListener('click', () => {
+    document.documentElement.dataset.direction = 'back';
+  });
+</script>
+</Layout>
+
+<style>
+  .cartas {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem 5rem;
+    gap: 4rem;
+    position: relative;
+  }
+
+  .cartas__back {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #D0B78C;
+    font-size: 2.5rem;
+    text-decoration: none;
+    line-height: 1;
+    z-index: 10;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .cartas__back:hover { opacity: 1; }
+
+  .cartas__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 950px;
+  }
+
+  .cartas__title {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #D0B78C;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin: 0;
+    text-align: center;
+  }
+
+  .cartas__img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+</style>
