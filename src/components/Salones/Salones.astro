@@ -152,4 +152,56 @@ import videoSrc from '../../assets/salones/videocarta.mp4';
     display: block;
     object-fit: cover;
   }
+
+  @media (max-width: 768px) {
+    .salones {
+      margin-top: 2rem;
+      min-height: auto;
+    }
+
+    .salones__inner {
+      padding: 3rem 1.5rem 0;
+      gap: 1.5rem;
+    }
+
+    .salones__title {
+      font-size: 1.3rem;
+    }
+
+    .salones__desc {
+      font-size: 0.8rem;
+    }
+
+    .salones__cols {
+      max-width: 100%;
+    }
+
+    .salones__col {
+      padding: 0 0.75rem;
+    }
+
+    .salones__col-nombre {
+      font-size: 0.7rem;
+    }
+
+    .salones__col-num {
+      font-size: 1.8rem;
+    }
+
+    .salones__col-label {
+      font-size: 0.65rem;
+    }
+
+    .salones__divider {
+      height: 60px;
+    }
+
+    .salones__video {
+      width: 100%;
+      height: 480px;
+      max-width: none;
+      margin: 0 -1.5rem;
+      width: calc(100% + 3rem);
+    }
+  }
 </style>
