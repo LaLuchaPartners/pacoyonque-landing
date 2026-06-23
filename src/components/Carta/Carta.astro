@@ -41,7 +41,7 @@ import videoSrc from '../../assets/carta/videocarta.mp4';
 
   .carta__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: 2.5rem;
     width: 100%;
     max-width: 1200px;
@@ -55,14 +55,15 @@ import videoSrc from '../../assets/carta/videocarta.mp4';
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
 
   .carta__video {
     width: 100%;
-    max-width: 450px;
-    height: auto;
+    height: 820px;
     border-radius: 0;
     object-fit: cover;
+    object-position: center;
     display: block;
   }
 
@@ -91,12 +92,12 @@ import videoSrc from '../../assets/carta/videocarta.mp4';
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     color: #CD9968;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 123.8%;
     letter-spacing: 0.1em;
     text-align: center;
     margin: 0;
-    max-width: 320px;
+    max-width: 350px;
   }
 
   .carta__btn {
