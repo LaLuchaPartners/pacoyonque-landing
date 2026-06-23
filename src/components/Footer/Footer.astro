@@ -110,4 +110,51 @@ import iconoLibro from '../../assets/footer/libroicono.webp';
   }
 
   .footer__legal-link:hover { opacity: 0.75; }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 0 2rem 2.5rem;
+      margin-top: 0;
+      gap: 1rem;
+    }
+
+    .footer__links {
+      gap: 3rem;
+    }
+
+    .footer__link {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .footer__icon {
+      width: 32px;
+    }
+
+    .footer__link-text {
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
+    }
+
+    .footer__bottom {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 0.4rem;
+      text-align: center;
+    }
+
+    .footer__legal {
+      gap: 1rem;
+    }
+
+    .footer__copy {
+      font-size: 0.55rem;
+    }
+
+    .footer__legal-link {
+      font-size: 0.65rem;
+    }
+  }
 </style>
