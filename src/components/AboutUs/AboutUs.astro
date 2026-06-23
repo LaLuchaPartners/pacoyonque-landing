@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import fondo from '../../assets/aboutus/estrellasfondo.webp';
+import imgIzquierda from '../../assets/aboutus/imagenizquierda.webp';
+import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
+---
+
+<section id="aboutus" class="aboutus">
+  <Image src={fondo} alt="" class="aboutus__bg" aria-hidden="true" />
+
+  <div class="aboutus__grid">
+
+    <div class="aboutus__left">
+      <p class="aboutus__text">
+        Tradición, calidez y buena cocina se unen
+        en Paco Yonque para ofrecerte una
+        experiencia que invita a disfrutar cada
+        momento frente al parque Kennedy.
+      </p>
+      <Image
+        src={imgIzquierda}
+        alt="Interior Paco Yonque"
+        class="aboutus__img-bar"
+      />
+    </div>
+
+    <div class="aboutus__right">
+      <Image
+        src={imgDerecha}
+        alt="Momentos en Paco Yonque"
+        class="aboutus__img-collage"
+      />
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .aboutus {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .aboutus__bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: auto;
+    z-index: 0;
+  }
+
+.aboutus__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 3.5rem;
+    align-items: start;
+  }
+
+  /* ── Columna izquierda ── */
+  .aboutus__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .aboutus__text {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #CD9968;
+    font-size: 1rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+    width: 350px;
+    height: 120px;
+  }
+
+  .aboutus__img-bar {
+    width: 75%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  /* ── Columna derecha ── */
+  .aboutus__right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .aboutus__img-collage {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .aboutus {
+      margin-top: 5rem;
+    }
+
+    .aboutus__bg {
+      width: 100%;
+    }
+
+    .aboutus__grid {
+      grid-template-columns: 1fr;
+      padding: 2rem 1.5rem;
+      gap: 2rem;
+    }
+
+    .aboutus__left {
+      order: 1;
+    }
+
+    .aboutus__text {
+      width: 70%;
+      height: auto;
+      font-size: 0.95rem;
+    }
+
+    .aboutus__img-bar {
+      width: 90%;
+    }
+
+    .aboutus__right {
+      order: 2;
+      margin-left: -60px;
+      margin-right: -60px;
+      width: calc(100% + 120px);
+    }
+
+    .aboutus__img-collage {
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+</style>
