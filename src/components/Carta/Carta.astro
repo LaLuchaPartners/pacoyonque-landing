@@ -1,0 +1,162 @@
+---
+import videoSrc from '../../assets/carta/videocarta.mp4';
+---
+
+<section id="carta" class="carta">
+  <div class="carta__grid">
+
+    <div class="carta__left">
+      <video
+        class="carta__video"
+        src={videoSrc}
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
+
+    <div class="carta__right">
+      <h2 class="carta__title">Nuestra Cocina</h2>
+      <p class="carta__desc">
+        El aroma de la parrilla, la calidad
+        de nuestras carnes y la calidez de
+        nuestro servicio se unen para
+        brindarte una experiencia única.
+      </p>
+      <a href="/carta" class="carta__btn">Cartas</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .carta {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .carta__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 3.5rem;
+    align-items: center;
+  }
+
+  /* ── Columna izquierda ── */
+  .carta__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carta__video {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 0;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Columna derecha ── */
+  .carta__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .carta__title {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #D0B78C;
+    font-size: 2rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .carta__desc {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #CD9968;
+    font-size: 1rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+    max-width: 320px;
+  }
+
+  .carta__btn {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #D0B78C;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    border: 1px solid #D0B78C;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+  }
+
+  .carta__btn:hover {
+    background: rgba(208, 183, 140, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .carta {
+      margin-top: 3rem;
+      min-height: auto;
+    }
+
+    .carta__grid {
+      grid-template-columns: 1fr;
+      padding: 2rem 1.5rem 0;
+      gap: 2rem;
+    }
+
+    .carta__right {
+      order: 1;
+    }
+
+    .carta__left {
+      order: 2;
+      margin: 0 -1.5rem;
+    }
+
+    .carta__video {
+      width: 100%;
+      max-width: none;
+      height: 560px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .carta__title {
+      font-size: 1.2rem;
+    }
+
+    .carta__desc {
+      font-size: 0.85rem;
+      max-width: 250px;
+    }
+
+    .carta__btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 1.5rem;
+    }
+  }
+</style>
