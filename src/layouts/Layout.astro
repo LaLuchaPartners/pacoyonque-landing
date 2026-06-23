@@ -8,7 +8,7 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "Paco Yonque - Restaurante Premium" } = Astro.props;
+const { title, description = "Paco Yonque" } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +17,7 @@ const { title, description = "Paco Yonque - Restaurante Premium" } = Astro.props
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ClientRouter />
