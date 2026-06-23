@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width: 768px) {
+  #horGrid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.75rem 0.5rem !important;
+    max-width: 100% !important;
+    padding: 0 0.5rem;
+  }
+
+  #horGrid button {
+    width: 100% !important;
+    font-size: 0.8rem !important;
+    padding: 0.35rem 0.25rem !important;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0);     opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%);  opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes slide-out-right {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(100%); opacity: 0; }
+}
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* Forward (index → carta) */
+::view-transition-old(root) {
+  animation: 0.5s cubic-bezier(0.4, 0, 0.2, 1) both slide-out-left;
+}
+::view-transition-new(root) {
+  animation: 0.5s cubic-bezier(0.4, 0, 0.2, 1) both slide-in-right;
+}
+
+/* Back (carta → index) */
+:root[data-direction="back"]::view-transition-old(root) {
+  animation: 0.5s cubic-bezier(0.4, 0, 0.2, 1) both slide-out-right;
+}
+:root[data-direction="back"]::view-transition-new(root) {
+  animation: 0.5s cubic-bezier(0.4, 0, 0.2, 1) both slide-in-left;
+}
+
 @layer base {
   :root {
     --color-gold: 197 160 89;
@@ -13,7 +63,7 @@
   }
 
   body {
-    @apply bg-[#EDE6D0] text-premium-dark font-sans antialiased;
+    @apply bg-[#0A0A0A] text-white font-sans antialiased;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -21,31 +71,5 @@
 
   h1, h2, h3, h4 {
     @apply font-serif;
-  }
-}
-
-@layer components {
-  .section-container {
-    @apply relative w-full h-screen overflow-hidden flex items-center justify-center;
-  }
-
-  .background-image {
-    @apply absolute inset-0 w-full h-full object-cover z-0;
-  }
-
-  .overlay {
-    @apply absolute inset-0 bg-black/40 z-10;
-  }
-
-  .content-wrapper {
-    @apply relative z-20 container mx-auto px-4 text-center;
-  }
-
-  .animate-on-scroll {
-    @apply opacity-0 translate-y-10 transition-all duration-1000 ease-out;
-  }
-
-  .animate-on-scroll.is-visible {
-    @apply opacity-100 translate-y-0;
   }
 }
