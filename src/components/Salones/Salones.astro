@@ -170,6 +170,11 @@ import videoSrc from '../../assets/salones/videocarta.mp4';
 
     .salones__desc {
       font-size: 0.8rem;
+      max-width: 100%;
+    }
+
+    .salones__desc br {
+      display: none;
     }
 
     .salones__cols {
@@ -182,6 +187,14 @@ import videoSrc from '../../assets/salones/videocarta.mp4';
 
     .salones__col-nombre {
       font-size: 0.7rem;
+    }
+
+    .salones__col:nth-child(1) .salones__col-nombre {
+      max-width: 3.5rem;
+    }
+
+    .salones__col:nth-child(3) .salones__col-nombre {
+      max-width: 5rem;
     }
 
     .salones__col-num {
