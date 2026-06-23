@@ -1,0 +1,106 @@
+---
+import { Image } from 'astro:assets';
+import fondo from '../../assets/ending/fondoestrellas.webp';
+---
+
+<section id="ending" class="ending">
+  <Image src={fondo} alt="" class="ending__bg" aria-hidden="true" />
+
+  <div class="ending__content">
+    <h2 class="ending__title">Horarios de<br />Atención</h2>
+
+    <div class="ending__bloques">
+      <div class="ending__bloque">
+        <p class="ending__dias">Domingo, Martes y Miércoles</p>
+        <p class="ending__hora">1 p.m. a 12 a.m.</p>
+      </div>
+
+      <div class="ending__bloque">
+        <p class="ending__dias">Jueves, Viernes y sábado</p>
+        <p class="ending__hora">1 p.m. a 2 a.m.</p>
+      </div>
+
+      <div class="ending__bloque">
+        <p class="ending__dias">Late Nite</p>
+        <p class="ending__hora">Desde las 11 p.m.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ending {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ending__bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: auto;
+    z-index: 0;
+  }
+
+  .ending__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .ending__title {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #D0B78C;
+    font-size: 2rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .ending__bloques {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  .ending__bloque {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ending__dias {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #CD9968;
+    font-size: 1rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .ending__hora {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #CD9968;
+    font-size: 1rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+</style>
