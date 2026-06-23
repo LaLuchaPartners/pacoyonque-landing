@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import fondoWeb from '../assets/hero/fondoweb.webp';
 
 interface Props {
 	title: string;
@@ -18,37 +20,42 @@ const { title, description = "Paco Yonque - Restaurante Premium" } = Astro.props
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-[#EDE6D0] text-premium-dark selection:bg-premium-gold/30">
-		<main id="main-content">
+	<body>
+		<img src={fondoWeb.src} alt="" class="bg-web" aria-hidden="true" />
+		<main>
 			<slot />
 		</main>
-
 		<script>
-			const observerOptions = {
-				root: null,
-				rootMargin: '0px',
-				threshold: 0.1
-			};
-
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add('is-visible');
-					}
-				});
-			}, observerOptions);
-
-			document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-				observer.observe(el);
+			document.addEventListener('astro:before-preparation', () => {
+				if (!document.documentElement.dataset.direction) {
+					document.documentElement.dataset.direction = 'forward';
+				}
+			});
+			document.addEventListener('astro:after-swap', () => {
+				delete document.documentElement.dataset.direction;
 			});
 		</script>
 	</body>
 </html>
 
-<style is:global>
-	/* Styles removed to allow natural continuous scroll */
+<style>
+	main {
+		width: 100%;
+		overflow-x: hidden;
+	}
+
+	.bg-web {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		z-index: -1;
+	}
 </style>
