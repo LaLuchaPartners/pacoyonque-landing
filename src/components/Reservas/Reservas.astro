@@ -420,17 +420,20 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
     }
 
     .reservas__title {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
 
     .reservas__desc {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      max-width: 240px;
     }
 
     /* Paso 1 inputs */
     #paso1 .reservas__input {
-      max-width: 90vw;
-      width: 90vw;
+      max-width: 65vw;
+      width: 65vw;
+      font-size: 0.9rem;
+      padding: 0.65rem 1rem;
     }
 
     /* Paso 2: calendario */
@@ -451,7 +454,7 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
 
     /* Paso 3: horarios 3 columnas */
     .hor__grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.75rem 0.5rem;
       max-width: 100%;
       padding: 0 0.5rem;
@@ -471,7 +474,14 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
 
     /* Paso 4 inputs */
     #paso4 .reservas__input {
-      width: 90vw;
+      width: 65vw;
+      max-width: 65vw;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+
+    #paso4 .reservas__textarea {
+      height: 100px;
     }
 
     /* Botón continuar */
@@ -588,24 +598,55 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
     });
   }
 
+  const hoy = new Date();
+  const mesMinimo = hoy.getMonth();
+  const anioMinimo = hoy.getFullYear();
+
+  function shake(el: HTMLElement) {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = 'shake 0.3s ease';
+  }
+
   document.getElementById('btnPaso1')!.addEventListener('click', () => {
+    const nombre = (document.getElementById('inputNombre') as HTMLInputElement).value.trim();
+    const celular = (document.getElementById('inputCelular') as HTMLInputElement).value.trim();
+    if (!nombre || !celular) {
+      shake(document.getElementById('paso1')!.querySelector('.reservas__form') as HTMLElement);
+      return;
+    }
     document.getElementById('paso1')!.classList.add('hidden');
     document.getElementById('paso2')!.classList.remove('hidden');
     renderCalendario();
   });
 
   document.getElementById('btnPaso2')!.addEventListener('click', () => {
+    if (!diaSeleccionado) {
+      shake(document.getElementById('calDays') as HTMLElement);
+      return;
+    }
     document.getElementById('paso2')!.classList.add('hidden');
     document.getElementById('paso3')!.classList.remove('hidden');
     renderHorarios();
   });
 
   document.getElementById('btnPaso3')!.addEventListener('click', () => {
+    if (!horSeleccionado) {
+      shake(document.getElementById('horGrid') as HTMLElement);
+      return;
+    }
     document.getElementById('paso3')!.classList.add('hidden');
     document.getElementById('paso4')!.classList.remove('hidden');
   });
 
   document.getElementById('btnPaso4')!.addEventListener('click', () => {
+    const inputs = document.querySelectorAll('#paso4 .reservas__input');
+    const personas = (inputs[0] as HTMLInputElement).value.trim();
+    const celebra  = (inputs[1] as HTMLTextAreaElement).value.trim();
+    if (!personas || !celebra) {
+      shake(document.getElementById('paso4')!.querySelector('.reservas__form') as HTMLElement);
+      return;
+    }
     document.getElementById('paso4')!.classList.add('hidden');
     document.getElementById('paso5')!.classList.remove('hidden');
   });
@@ -613,11 +654,18 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
   document.getElementById('btnPaso5')!.addEventListener('click', () => {
     document.getElementById('paso5')!.classList.add('hidden');
     document.getElementById('paso1')!.classList.remove('hidden');
+    diaSeleccionado = null;
+    horSeleccionado = null;
+    mes = hoy.getMonth();
+    anio = hoy.getFullYear();
   });
 
   document.getElementById('prevMes')!.addEventListener('click', () => {
-    mes--;
-    if (mes < 0) { mes = 11; anio--; }
+    const prevMes = mes - 1 < 0 ? 11 : mes - 1;
+    const prevAnio = mes - 1 < 0 ? anio - 1 : anio;
+    if (prevAnio < anioMinimo || (prevAnio === anioMinimo && prevMes < mesMinimo)) return;
+    mes = prevMes;
+    anio = prevAnio;
     diaSeleccionado = null;
     renderCalendario();
   });
