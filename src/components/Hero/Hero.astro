@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import fondo from '../../assets/hero/fondo.webp';
+import logo from '../../assets/hero/logo.webp';
+---
+
+<section id="hero" class="hero">
+  <Image src={fondo} alt="Paco Yonque" class="hero__bg" />
+
+  <div class="hero__content">
+    <div class="hero__top">
+      <Image src={logo} alt="Paco Yonque" class="hero__logo" />
+      <p class="hero__address">C. Mártir José Olaya 280</p>
+      <p class="hero__address">Miraflores</p>
+    </div>
+
+    <div class="hero__bottom">
+      <a href="#reservas" class="hero__btn"><span class="hero__btn-text">Reservas</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 2rem 2rem;
+  }
+
+  .hero__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hero__logo {
+    width: 240px;
+    max-width: 32vw;
+    height: auto;
+  }
+
+  .hero__address {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #CD9968;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    line-height: 140.3%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .hero__bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+
+  .hero__btn {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #FFDEB6;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    line-height: 140.3%;
+    text-decoration: none;
+    padding: 0.65rem 3.5rem;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: none;
+    border-radius: 7px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .hero__btn-text {
+    font-size: 1.2rem;
+  }
+
+  .hero__btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 222, 182, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    .hero__bg {
+      object-position: center center;
+    }
+
+    .hero__content {
+      padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .hero__logo {
+      width: 180px;
+      max-width: 55vw;
+    }
+
+    .hero__address {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+    }
+
+    .hero__btn {
+      padding: 0.55rem 2.5rem;
+    }
+
+    .hero__btn-text {
+      font-size: 1rem;
+    }
+  }
+</style>
