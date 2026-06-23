@@ -1,0 +1,631 @@
+---
+import { Image } from 'astro:assets';
+import fondo from '../../assets/reservas/fondoestrellas.webp';
+import icono from '../../assets/reservas/iconoreservas.webp';
+import iconoCalendario from '../../assets/reservas/calendarioicono.webp';
+import iconoHorario from '../../assets/reservas/horarioicono.webp';
+import iconoPersonas from '../../assets/reservas/personasicono.webp';
+import iconoCompletado from '../../assets/reservas/reservacompletadaicono.webp';
+import flechaInferior from '../../assets/reservas/flechainferior.webp';
+---
+
+<section id="reservas" class="reservas">
+  <Image src={fondo} alt="" class="reservas__bg" aria-hidden="true" />
+
+  <!-- Paso 1: Datos -->
+  <div class="reservas__content" id="paso1">
+    <Image src={icono} alt="Reservas" class="reservas__icon" />
+    <h2 class="reservas__title">Reservas</h2>
+    <p class="reservas__desc">
+      Bienvenido, recuerda que para mayor información puedes gestionar tu<br />
+      reserva a través de nuestro canal de whatsapp 945069877
+    </p>
+    <div class="reservas__form">
+      <input type="text" placeholder="Nombre:" class="reservas__input" id="inputNombre" />
+      <input type="tel" placeholder="Celular:" class="reservas__input" id="inputCelular" />
+      <button class="reservas__btn" id="btnPaso1">Continuar</button>
+    </div>
+  </div>
+
+  <!-- Paso 2: Calendario -->
+  <div class="reservas__content hidden" id="paso2">
+    <Image src={iconoCalendario} alt="Calendario" class="reservas__icon" />
+
+    <div class="cal">
+      <div class="cal__nav">
+        <button class="cal__arrow" id="prevMes">&#8249;</button>
+        <div class="cal__mes-box">
+          <span class="cal__mes" id="calMes">Enero</span>
+        </div>
+        <button class="cal__arrow" id="nextMes">&#8250;</button>
+      </div>
+
+      <div class="cal__grid">
+        <span class="cal__dow">Mar</span>
+        <span class="cal__dow">Mie</span>
+        <span class="cal__dow">Jue</span>
+        <span class="cal__dow">Vie</span>
+        <span class="cal__dow">Sab</span>
+        <span class="cal__dow">Dom</span>
+      </div>
+      <div class="cal__days" id="calDays"></div>
+    </div>
+
+    <button class="reservas__btn" id="btnPaso2">Continuar</button>
+  </div>
+
+  <!-- Paso 3: Horarios -->
+  <div class="reservas__content hidden" id="paso3">
+    <Image src={iconoHorario} alt="Horarios" class="reservas__icon" />
+
+    <div class="hor__mes-box">
+      <span class="hor__titulo">Horarios</span>
+    </div>
+
+    <div class="hor__grid" id="horGrid"></div>
+
+    <button class="reservas__btn" id="btnPaso3">Continuar</button>
+  </div>
+
+  <!-- Paso 4: Personas y celebración -->
+  <div class="reservas__content hidden" id="paso4">
+    <Image src={iconoPersonas} alt="Personas" class="reservas__icon" />
+    <div class="reservas__form">
+      <input
+        type="number"
+        placeholder="Nº Personas:"
+        class="reservas__input"
+        min="1"
+      />
+      <textarea
+        placeholder="¿Qué celebras?:"
+        class="reservas__input reservas__textarea"
+      ></textarea>
+      <button class="reservas__btn" id="btnPaso4">Continuar</button>
+    </div>
+  </div>
+
+  <!-- Paso 5: Confirmación -->
+  <div class="reservas__content hidden" id="paso5">
+    <p class="reservas__completado">¡Registro<br />completado!</p>
+    <Image src={iconoCompletado} alt="Reserva completada" class="reservas__icon-completado" />
+    <button class="reservas__chevron" id="btnPaso5">
+      <Image src={flechaInferior} alt="Continuar" class="reservas__flecha" />
+    </button>
+  </div>
+</section>
+
+<style>
+  .reservas {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .reservas__bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: auto;
+    z-index: 0;
+  }
+
+  .reservas__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    max-width: 780px;
+    padding: 4rem 2rem;
+  }
+
+  .hidden { display: none !important; }
+
+  .reservas__icon {
+    width: 90px;
+    height: auto;
+  }
+
+  .reservas__title {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #FEECCD;
+    font-size: 2rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .reservas__desc {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #BAA694;
+    font-size: 1.25rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .reservas__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  #paso1 .reservas__input {
+    max-width: 300px;
+  }
+
+  #paso4 .reservas__form {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  #paso4 .reservas__input {
+    width: 360px;
+    max-width: 90vw;
+    padding: 0.8rem 1rem;
+  }
+
+  #paso4 .reservas__btn {
+    margin-top: 1.5rem;
+  }
+
+  .reservas__input {
+    width: 100%;
+    max-width: 460px;
+    padding: 0.35rem 1rem;
+    background: #311D1D;
+    color: #F9EAD0;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  .reservas__textarea {
+    height: 140px;
+    resize: none;
+    border-radius: 16px;
+    padding-top: 0.6rem;
+    line-height: 1.4;
+  }
+
+  .reservas__input::placeholder {
+    color: #F9EAD0;
+    opacity: 0.8;
+  }
+
+  .reservas__btn {
+    width: 100%;
+    max-width: 220px;
+    padding: 0.35rem 1rem;
+    background: transparent;
+    color: #D9B982;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    border: 1px solid #D9B982;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .reservas__btn:hover {
+    background: rgba(217, 185, 130, 0.1);
+  }
+
+  /* ── Reset fuente botones ── */
+  .reservas button {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+  }
+
+  /* ── Calendario ── */
+  .cal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .cal__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .cal__arrow {
+    background: #311D1D;
+    border: none;
+    color: #F9EAD0;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.1rem 0.75rem;
+    border-radius: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+
+  .cal__arrow:hover { opacity: 1; }
+
+  .cal__mes-box {
+    background: #311D1D;
+    border-radius: 20px;
+    padding: 0.35rem 3rem;
+    min-width: 220px;
+  }
+
+  .cal__mes {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #F9EAD0;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .cal__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.25rem 2.2rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .cal__dow {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #F9EAD0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .cal__days {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.2rem 2.2rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .cal__day {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-style: italic !important;
+    color: #F9EAD0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+    background: none;
+    border: none;
+  }
+
+  .cal__day:hover {
+    background: rgba(249, 234, 208, 0.15);
+  }
+
+  .cal__day.selected {
+    background: rgba(249, 234, 208, 0.25);
+  }
+
+  .cal__day.muted {
+    opacity: 0.2;
+    cursor: default;
+  }
+
+  .cal__day.muted:hover {
+    background: none;
+  }
+
+  /* ── Confirmación ── */
+  .reservas__completado {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #D0B78C;
+    font-size: 2rem;
+    line-height: 123.8%;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+  }
+
+  .reservas__icon-completado {
+    width: 100px;
+    height: auto;
+    margin: 1.5rem 0;
+  }
+
+  .reservas__chevron {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .reservas__chevron:hover { opacity: 1; }
+
+  .reservas__flecha {
+    width: 28px;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Horarios ── */
+  .hor__mes-box {
+    background: #311D1D;
+    border-radius: 20px;
+    padding: 0.35rem 3rem;
+    min-width: 220px;
+  }
+
+  .hor__titulo {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #F9EAD0;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hor__grid {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: 1.1rem 1.5rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .reservas__bg {
+      width: 120%;
+    }
+
+    .reservas__content {
+      padding: 3rem 1.25rem;
+      max-width: 100%;
+    }
+
+    .reservas__icon {
+      width: 65px;
+    }
+
+    .reservas__title {
+      font-size: 1.5rem;
+    }
+
+    .reservas__desc {
+      font-size: 0.95rem;
+    }
+
+    /* Paso 1 inputs */
+    #paso1 .reservas__input {
+      max-width: 90vw;
+      width: 90vw;
+    }
+
+    /* Paso 2: calendario */
+    .cal__mes-box {
+      min-width: 160px;
+      padding: 0.35rem 1.5rem;
+    }
+
+    .cal__grid {
+      gap: 0.25rem 1rem;
+      max-width: 320px;
+    }
+
+    .cal__days {
+      gap: 0.9rem 1rem;
+      max-width: 320px;
+    }
+
+    /* Paso 3: horarios 3 columnas */
+    .hor__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem 0.5rem;
+      max-width: 100%;
+      padding: 0 0.5rem;
+    }
+
+    .hor__grid button {
+      width: 100% !important;
+      white-space: nowrap;
+      font-size: 0.85rem !important;
+      padding: 0.3rem 0.25rem !important;
+    }
+
+    .hor__mes-box {
+      min-width: 160px;
+      padding: 0.35rem 1.5rem;
+    }
+
+    /* Paso 4 inputs */
+    #paso4 .reservas__input {
+      width: 90vw;
+    }
+
+    /* Botón continuar */
+    .reservas__btn {
+      max-width: 180px;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+  let fecha = new Date();
+  let anio = fecha.getFullYear();
+  let mes  = fecha.getMonth();
+  let diaSeleccionado: number | null = null;
+
+  const BASE_STYLE = "font-family:'Times New Roman',Times,serif;font-style:italic;color:#F9EAD0;font-size:1rem;letter-spacing:0.05em;text-align:center;cursor:pointer;padding:0.2rem;border-radius:50%;transition:background 0.2s;background:none;border:none;";
+  const MUTED_STYLE = BASE_STYLE + "opacity:0.2;cursor:default;";
+
+  // Columnas: Mar=0, Mie=1, Jue=2, Vie=3, Sab=4, Dom=5 (Lun se omite)
+  // JS: 0=Dom, 1=Lun, 2=Mar, 3=Mie, 4=Jue, 5=Vie, 6=Sab
+  const DOW_COL: Record<number, number> = { 2:0, 3:1, 4:2, 5:3, 6:4, 0:5 };
+
+  function addBtn(calDays: HTMLElement, text: string, muted: boolean, dayNum = 0) {
+    const btn = document.createElement('button');
+    btn.style.cssText = muted ? MUTED_STYLE : BASE_STYLE;
+    btn.textContent = text;
+    if (!muted) {
+      btn.addEventListener('click', () => {
+        diaSeleccionado = dayNum;
+        calDays.querySelectorAll('button').forEach((el) => {
+          (el as HTMLElement).style.background = 'none';
+        });
+        btn.style.background = 'rgba(249,234,208,0.25)';
+      });
+      btn.addEventListener('mouseenter', () => {
+        if (dayNum !== diaSeleccionado) btn.style.background = 'rgba(249,234,208,0.15)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        if (dayNum !== diaSeleccionado) btn.style.background = 'none';
+      });
+      if (dayNum === diaSeleccionado) btn.style.background = 'rgba(249,234,208,0.25)';
+    }
+    calDays.appendChild(btn);
+  }
+
+  function renderCalendario() {
+    const calMes  = document.getElementById('calMes')!;
+    const calDays = document.getElementById('calDays')!;
+
+    calMes.textContent = MESES[mes];
+    calDays.innerHTML  = '';
+
+    const diasEnMes       = new Date(anio, mes + 1, 0).getDate();
+    const diasMesAnterior = new Date(anio, mes, 0).getDate();
+    const primerDow       = new Date(anio, mes, 1).getDay(); // JS day of week
+
+    // Offset: cuántas celdas vacías antes del primer día (ignorando lunes)
+    const offset = primerDow === 1 ? 0 : (DOW_COL[primerDow] ?? 0);
+
+    // Días del mes anterior (muted)
+    for (let i = offset - 1; i >= 0; i--) {
+      addBtn(calDays, String(diasMesAnterior - i), true);
+    }
+
+    // Días del mes actual (saltar lunes)
+    let rendered = offset;
+    for (let d = 1; d <= diasEnMes; d++) {
+      const dow = new Date(anio, mes, d).getDay();
+      if (dow === 1) continue; // saltar lunes
+      addBtn(calDays, String(d), false, d);
+      rendered++;
+    }
+
+    // Días del mes siguiente para completar última fila
+    const resto = rendered % 6 === 0 ? 0 : 6 - (rendered % 6);
+    for (let d = 1; d <= resto; d++) {
+      addBtn(calDays, String(d), true);
+    }
+  }
+
+  const HORARIOS = [
+    '1:00 PM','1:15 PM','1:30 PM','1:45 PM','2:00 PM','2:15 PM',
+    '2:30 PM','2:45 PM','3:00 PM','3:15 PM','3:30 PM','3:45 PM',
+    '4:00 PM','4:15 PM','4:30 PM','4:45 PM','6:15 PM','6:30 PM',
+    '6:45 PM','7:00 PM','7:15 PM','7:30 PM','7:45 PM','8:00 PM',
+    '8:45 PM','9:00 PM','9:15 PM','9:30 PM','9:45 PM','10:00 PM',
+    '10:15 PM','10:30 PM','11:00 PM','11:15 PM','11:30 PM',
+  ];
+
+  const HOR_STYLE = "font-family:'Times New Roman',Times,serif;font-style:italic;color:#F9EAD0;font-size:1.35rem;letter-spacing:0.05em;text-align:center;cursor:pointer;padding:0.5rem 1rem;border-radius:20px;border:1px solid rgba(249,234,208,0.5);background:none;transition:background 0.2s;white-space:nowrap;";
+  const HOR_SELECTED = "background:rgba(249,234,208,0.2);border-color:#F9EAD0;";
+
+  let horSeleccionado: string | null = null;
+
+  function renderHorarios() {
+    const grid = document.getElementById('horGrid')!;
+    grid.innerHTML = '';
+    HORARIOS.forEach(h => {
+      const btn = document.createElement('button');
+      btn.style.cssText = HOR_STYLE + (h === horSeleccionado ? HOR_SELECTED : '');
+      btn.textContent = h;
+      btn.addEventListener('click', () => {
+        horSeleccionado = h;
+        grid.querySelectorAll('button').forEach(el => {
+          (el as HTMLElement).style.cssText = HOR_STYLE;
+        });
+        btn.style.cssText = HOR_STYLE + HOR_SELECTED;
+      });
+      grid.appendChild(btn);
+    });
+  }
+
+  document.getElementById('btnPaso1')!.addEventListener('click', () => {
+    document.getElementById('paso1')!.classList.add('hidden');
+    document.getElementById('paso2')!.classList.remove('hidden');
+    renderCalendario();
+  });
+
+  document.getElementById('btnPaso2')!.addEventListener('click', () => {
+    document.getElementById('paso2')!.classList.add('hidden');
+    document.getElementById('paso3')!.classList.remove('hidden');
+    renderHorarios();
+  });
+
+  document.getElementById('btnPaso3')!.addEventListener('click', () => {
+    document.getElementById('paso3')!.classList.add('hidden');
+    document.getElementById('paso4')!.classList.remove('hidden');
+  });
+
+  document.getElementById('btnPaso4')!.addEventListener('click', () => {
+    document.getElementById('paso4')!.classList.add('hidden');
+    document.getElementById('paso5')!.classList.remove('hidden');
+  });
+
+  document.getElementById('btnPaso5')!.addEventListener('click', () => {
+    document.getElementById('paso5')!.classList.add('hidden');
+    document.getElementById('paso1')!.classList.remove('hidden');
+  });
+
+  document.getElementById('prevMes')!.addEventListener('click', () => {
+    mes--;
+    if (mes < 0) { mes = 11; anio--; }
+    diaSeleccionado = null;
+    renderCalendario();
+  });
+
+  document.getElementById('nextMes')!.addEventListener('click', () => {
+    mes++;
+    if (mes > 11) { mes = 0; anio++; }
+    diaSeleccionado = null;
+    renderCalendario();
+  });
+</script>
