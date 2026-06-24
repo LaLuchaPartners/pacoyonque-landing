@@ -20,7 +20,7 @@ import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
       <Image
         src={imgIzquierda}
         alt="Interior Paco Yonque"
-        class="aboutus__img-bar"
+        class="aboutus__img-bar slide-from-left"
       />
     </div>
 
@@ -28,7 +28,7 @@ import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
       <Image
         src={imgDerecha}
         alt="Momentos en Paco Yonque"
-        class="aboutus__img-collage"
+        class="aboutus__img-collage slide-from-right"
       />
     </div>
 
@@ -109,6 +109,25 @@ import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
     border-radius: 12px;
   }
 
+  /* ── Animaciones de entrada ── */
+  .slide-from-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .slide-from-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .slide-from-left.visible,
+  .slide-from-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   @media (max-width: 768px) {
     .aboutus {
       margin-top: 5rem;
@@ -154,3 +173,21 @@ import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
     }
   }
 </style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  document.querySelectorAll('.slide-from-left, .slide-from-right').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
