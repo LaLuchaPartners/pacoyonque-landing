@@ -40,6 +40,47 @@ const { title, description = "Paco Yonque" } = Astro.props;
 				delete document.documentElement.dataset.direction;
 			});
 		</script>
+		<script>
+			function forcePlayVideos() {
+				document.querySelectorAll('video').forEach((video) => {
+					video.muted = true;
+					const promise = video.play();
+					if (promise !== undefined) {
+						promise.catch(() => {
+							// Si el autoplay falla, intentar al primer toque del usuario
+							const resume = () => {
+								video.play();
+								document.removeEventListener('touchstart', resume);
+								document.removeEventListener('click', resume);
+							};
+							document.addEventListener('touchstart', resume, { once: true });
+							document.addEventListener('click', resume, { once: true });
+						});
+					}
+				});
+			}
+
+			// Al cargar la página
+			document.addEventListener('DOMContentLoaded', forcePlayVideos);
+			// Al navegar entre páginas con Astro transitions
+			document.addEventListener('astro:page-load', forcePlayVideos);
+
+			// Usar IntersectionObserver para reanudar videos al entrar al viewport
+			const videoObserver = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					const video = entry.target as HTMLVideoElement;
+					if (entry.isIntersecting && video.paused) {
+						video.play().catch(() => {});
+					}
+				});
+			}, { threshold: 0.25 });
+
+			function observeVideos() {
+				document.querySelectorAll('video').forEach((v) => videoObserver.observe(v));
+			}
+			document.addEventListener('DOMContentLoaded', observeVideos);
+			document.addEventListener('astro:page-load', observeVideos);
+		</script>
 	</body>
 </html>
 
