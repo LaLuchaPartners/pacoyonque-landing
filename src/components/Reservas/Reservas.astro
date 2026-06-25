@@ -17,10 +17,14 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
     <Image src={icono} alt="Reservas" class="reservas__icon" />
     <h2 class="reservas__title">Reservas</h2>
     <p class="reservas__desc">
-      Bienvenido, recuerda que para mayor información puedes gestionar tu<br />
-      reserva a través de nuestro canal de whatsapp 945069877
+      Gracias por confiar en nosotros.<br />
+      Estamos felices de ser parte de tus momentos mas especiales.
     </p>
-    <a href="https://www.mesa247.pe/lima/restaurante/paco-yonque" target="_blank" rel="noopener noreferrer" class="reservas__btn">Reservar</a>
+    <div class="reservas__btns">
+      <a href="https://api.whatsapp.com/send/?phone=51944586533&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener noreferrer" class="reservas__btn">Reservas</a>
+      <a href="https://api.whatsapp.com/send/?phone=51944586533&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener noreferrer" class="reservas__btn">Reservas Corporativas</a>
+      <a href="https://www.mesa247.pe/lima/restaurante/paco-yonque" target="_blank" rel="noopener noreferrer" class="reservas__btn">Mesa 24/7</a>
+    </div>
   </div>
 
   <!-- Paso 2: Calendario -->
@@ -208,9 +212,18 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
     opacity: 0.8;
   }
 
+  .reservas__btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
   .reservas__btn {
     width: 100%;
-    max-width: 220px;
+    max-width: 300px;
     padding: 0.35rem 1rem;
     background: transparent;
     color: #D9B982;
@@ -482,7 +495,7 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
 
     /* Botón continuar */
     .reservas__btn {
-      max-width: 180px;
+      max-width: 75vw;
       font-size: 1rem;
     }
   }
