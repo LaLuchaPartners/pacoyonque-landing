@@ -106,8 +106,20 @@ import logo from '../../assets/hero/logo.webp';
   }
 
   @media (max-width: 768px) {
+    .hero {
+      height: 100svh;
+      overflow: hidden;
+    }
+
     .hero__bg {
-      object-position: center center;
+      position: absolute !important;
+      top: 0 !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: auto !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: unset !important;
     }
 
     .hero__content {
