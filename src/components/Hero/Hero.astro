@@ -1,11 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import fondo from '../../assets/hero/fondo2.webp';
+import fondoMobile from '../../assets/hero/fondomobile.webp';
 import logo from '../../assets/hero/logo.webp';
 ---
 
 <section id="hero" class="hero">
-  <Image src={fondo} alt="Paco Yonque" class="hero__bg" />
+  <Image src={fondo} alt="Paco Yonque" class="hero__bg hero__bg--desktop" />
+  <Image src={fondoMobile} alt="Paco Yonque" class="hero__bg hero__bg--mobile" />
 
   <div class="hero__content">
     <div class="hero__top">
@@ -35,6 +37,10 @@ import logo from '../../assets/hero/logo.webp';
     height: 100% !important;
     object-fit: cover;
     object-position: center 30%;
+  }
+
+  .hero__bg--mobile {
+    display: none;
   }
 
   .hero__content {
@@ -111,15 +117,26 @@ import logo from '../../assets/hero/logo.webp';
       overflow: hidden;
     }
 
-    .hero__bg {
+    .hero__bg--desktop {
+      display: none;
+    }
+
+    .hero__bg--mobile {
+      display: block;
       position: absolute !important;
       top: 0 !important;
       left: 50% !important;
-      transform: translateX(-50%) !important;
+      transform: translateX(-50%) scale(1.23) !important;
       width: auto !important;
       height: 100% !important;
       max-width: none !important;
       object-fit: unset !important;
+    }
+
+    .hero__content {
+      position: absolute;
+      inset: 0;
+      height: auto;
     }
 
     .hero__content {
