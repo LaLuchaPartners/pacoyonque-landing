@@ -130,9 +130,26 @@ import flechaInferior from '../../assets/reservas/flechainferior.webp';
 
   .hidden { display: none !important; }
 
+  @keyframes ticketWobble {
+    0%   { transform: rotate(-18deg); }
+    10%  { transform: rotate(-13deg); }
+    22%  { transform: rotate(-23deg); }
+    35%  { transform: rotate(-15deg); }
+    48%  { transform: rotate(-21deg); }
+    60%  { transform: rotate(-17deg); }
+    72%  { transform: rotate(-19.5deg); }
+    85%  { transform: rotate(-18deg); }
+    100% { transform: rotate(-18deg); }
+  }
+
   .reservas__icon {
     width: 90px;
     height: auto;
+  }
+
+  #paso1 .reservas__icon {
+    transform-origin: 50% 50%;
+    animation: ticketWobble 5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
   }
 
   .reservas__title {
