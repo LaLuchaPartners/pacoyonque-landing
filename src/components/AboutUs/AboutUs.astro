@@ -175,19 +175,24 @@ import imgDerecha from '../../assets/aboutus/imagenderecha.webp';
 </style>
 
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+  function initAboutUsAnimations() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-  document.querySelectorAll('.slide-from-left, .slide-from-right').forEach((el) => {
-    observer.observe(el);
-  });
+    document.querySelectorAll('.slide-from-left, .slide-from-right').forEach((el) => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  }
+
+  document.addEventListener('astro:page-load', initAboutUsAnimations);
 </script>
